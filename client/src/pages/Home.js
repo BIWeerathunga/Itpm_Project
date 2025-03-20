@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import MyNavbar from "../components/Navbar";
 
 const Home = () => {
   // Internal CSS styles
@@ -64,71 +65,199 @@ const Home = () => {
 
   return (
     <>
-      {/* Hero Section */}
-      <div style={styles.videoContainer}>
-        <video style={styles.video} autoPlay loop muted>
-          <source src="videos/home.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div>
+        <MyNavbar />
+        {/* Hero Section */}
+        <div style={{ position: "relative" }}>
+          {/* Hero Section */}
+          <div style={styles.videoContainer}>
+            <video style={styles.video} autoPlay loop muted>
+              <source src="videos/home.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
 
-        <div style={styles.overlay}>
-          <h1 style={styles.heading}>Welcome to TravelMate</h1>
-          <p style={styles.subText}>Discover new adventures with us</p>
-          <button style={styles.button}>Explore Now</button>
-        </div>
-      </div>
-
-      {/* About Us Section */}
-      <div style={styles.section}>
-        <h2>About Us</h2>
-        <p>
-          TravelMate is your go-to travel companion, offering the best
-          experiences around the world.
-        </p>
-      </div>
-
-      {/* Popular Destinations Section */}
-      <div style={styles.section}>
-        <h2>Popular Destinations</h2>
-        <div className="d-flex justify-content-center flex-wrap">
-          <div style={styles.card}>
-            <h4>Paris</h4>
-            <p>The city of love and lights.</p>
+            <div style={styles.overlay}>
+              <h1 style={styles.heading}>Welcome to TravelMate</h1>
+              <p style={styles.subText}>Discover new adventures with us</p>
+              <button style={styles.button}>Explore Now</button>
+            </div>
           </div>
-          <div style={styles.card}>
-            <h4>Maldives</h4>
-            <p>Crystal clear beaches and luxury resorts.</p>
+
+          {/* Button Group - Placed Outside the Hero Section */}
+          <div
+            className="btn-group position-absolute start-50 translate-middle-x"
+            role="group"
+            style={{
+              width: "1200px",
+              height: "120px",
+              top: "calc(100vh - 50px)", // Moves halfway between sections
+              transform: "translateY(-50%)", // Centers the button group across sections
+              zIndex: 10, // Ensures it stays visible
+            }}
+          >
+            <button
+              className="btn btn-primary btn-lg "
+              style={{
+                backgroundColor: "white",
+                color: "#18C5EF",
+                fontWeight: "bold",
+                borderColor: "white",
+              }}
+            >
+              <i
+                className="bi bi-graph-up me-2 fs-2"
+                style={{ color: "#18C5EF" }}
+              ></i>{" "}
+              <br /> Manage Expenses
+            </button>
+
+            <div
+              style={{
+                width: "2px",
+                height: "120px",
+                backgroundColor: "#18C5EF",
+
+                alignSelf: "center", // Adjust this value to move it further down
+              }}
+            ></div>
+
+            <button
+              className="btn btn-primary btn-lg "
+              style={{
+                backgroundColor: "white",
+                fontWeight: "bold",
+                color: "#18C5EF",
+                borderColor: "white",
+              }}
+            >
+              <i
+                className="bi bi-chat-dots me-2 fs-2"
+                style={{ color: "#18C5EF" }}
+              ></i>{" "}
+              <br />
+              Ask AI
+            </button>
+            <div
+              style={{
+                width: "2px",
+                height: "120px",
+                backgroundColor: "#18C5EF",
+
+                alignSelf: "center", // Adjust this value to move it further down
+              }}
+            ></div>
+            <button
+              className="btn btn-primary btn-lg "
+              style={{
+                borderRight: "2px solid white",
+                backgroundColor: "white",
+                color: "#18C5EF",
+                fontWeight: "bold",
+                borderColor: "white",
+              }}
+            >
+              <i
+                className="bi bi-translate me-2 fs-2"
+                style={{ color: "#18C5EF" }}
+              ></i>{" "}
+              <br />
+              Translate Now
+            </button>
+            <div
+              style={{
+                width: "2px",
+                height: "120px",
+                backgroundColor: "#18C5EF",
+
+                alignSelf: "center", // Adjust this value to move it further down
+              }}
+            ></div>
+            <button
+              className="btn btn-primary btn-lg"
+              style={{
+                backgroundColor: "white",
+                color: "#18C5EF",
+                fontWeight: "bold",
+                borderColor: "white",
+              }}
+            >
+              <i
+                className="bi bi-pencil-square me-2 fs-2"
+                style={{ color: "#18C5EF" }}
+              ></i>{" "}
+              <br />
+              Give Feedback
+            </button>
           </div>
-          <div style={styles.card}>
-            <h4>New York</h4>
-            <p>The city that never sleeps.</p>
+
+          {/* Popular Destinations Section */}
+          <div
+            style={{
+              ...styles.section,
+              backgroundColor: "#e9f6f9",
+              height: "100vh",
+              marginTop: "-100px",
+            }}
+          >
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h2>Popular Destinations</h2>
+            <div className="d-flex justify-content-center flex-wrap">
+              <div style={styles.card}>
+                <h4>Paris</h4>
+                <p>The city of love and lights.</p>
+              </div>
+              <div style={styles.card}>
+                <h4>Maldives</h4>
+                <p>Crystal clear beaches and luxury resorts.</p>
+              </div>
+              <div style={styles.card}>
+                <h4>New York</h4>
+                <p>The city that never sleeps.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Services Section */}
-      <div style={styles.section}>
-        <h2>Our Services</h2>
-        <p>
-          We offer flight bookings, hotel reservations, guided tours, and more.
-        </p>
-      </div>
+        {/* Services Section */}
+        <div
+          style={{
+            ...styles.section,
+            backgroundColor: "white",
+            height: "100vh",
+            marginTop: "-100px",
+          }}
+        >
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
 
-      {/* Testimonials Section */}
-      <div style={styles.section}>
-        <h2>What Our Clients Say</h2>
-        <div style={styles.card}>
-          <p>"TravelMate made my trip unforgettable!" - Alex</p>
+          <h2>Our Tours</h2>
+          <p>
+            We offer flight bookings, hotel reservations, guided tours, and
+            more.
+          </p>
         </div>
-        <div style={styles.card}>
-          <p>"Great service and amazing destinations." - Sarah</p>
-        </div>
-      </div>
 
-      {/* Contact Us Section */}
-      <div style={styles.section}>
-        <h2>Contact Us</h2>
-        <p>Email: support@travelmate.com | Phone: +1 234 567 890</p>
+        {/* Testimonials Section */}
+        <div
+          style={{
+            ...styles.section,
+            backgroundColor: "#e9f6f9",
+            height: "100vh",
+            marginTop: "-100px",
+          }}
+        >
+          <h2>What Our Clients Say</h2>
+        </div>
       </div>
     </>
   );
