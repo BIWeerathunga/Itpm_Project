@@ -3,12 +3,12 @@ import React from "react";
 function Create() {
   return (
     <div
-      className="d-flex align-items-center justify-content-center vh-300 "
+      className="d-flex align-items-center justify-content-center vh-200 "
       style={{ height: "350px", marginTop: "250px" }}
     >
       <form
         className="p-4 border rounded shadow bg-light"
-        style={{ marginLeft: "-1220px", width: "900px" }}
+        style={{ marginLeft: "-1250px", width: "900px" }}
       >
         <h3>Add Destinations</h3>
         <div className="row">
