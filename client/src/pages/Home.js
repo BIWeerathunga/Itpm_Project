@@ -96,19 +96,36 @@ const Home = () => {
             }}
           >
             <button
-              className="btn btn-primary btn-lg "
+              className="btn btn-primary btn-lg"
               style={{
                 backgroundColor: "white",
                 color: "#18C5EF",
                 fontWeight: "bold",
                 borderColor: "white",
+                padding: "10px 20px",
+                fontSize: "18px",
+
+                border: "2px solid white",
+                transition: "color 0.2s ease-in-out",
+                cursor: "pointer",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.color = "#00308F"; // Change button text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#00308F"; // Change icon color only if it exists
+              }}
+              onMouseOut={(e) => {
+                e.target.style.color = "#18C5EF"; // Reset text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#18C5EF"; // Reset icon color only if it exists
               }}
             >
               <i
                 className="bi bi-graph-up me-2 fs-2"
                 style={{ color: "#18C5EF" }}
-              ></i>{" "}
-              <br /> Manage Expenses
+              ></i>
+              <br />
+              Manage Expenses
             </button>
 
             <div
@@ -122,12 +139,28 @@ const Home = () => {
             ></div>
 
             <button
-              className="btn btn-primary btn-lg "
+              className="btn btn-primary btn-lg"
               style={{
                 backgroundColor: "white",
-                fontWeight: "bold",
                 color: "#18C5EF",
+                fontWeight: "bold",
                 borderColor: "white",
+                padding: "10px 20px",
+                fontSize: "18px",
+
+                border: "2px solid white",
+                transition: "color 0.2s ease-in-out",
+                cursor: "pointer",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.color = "#00308F"; // Change button text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#00308F"; // Change icon color only if it exists
+              }}
+              onMouseOut={(e) => {
+                e.target.style.color = "#18C5EF"; // Reset text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#18C5EF"; // Reset icon color only if it exists
               }}
             >
               <i
@@ -147,13 +180,28 @@ const Home = () => {
               }}
             ></div>
             <button
-              className="btn btn-primary btn-lg "
+              className="btn btn-primary btn-lg"
               style={{
-                borderRight: "2px solid white",
                 backgroundColor: "white",
                 color: "#18C5EF",
                 fontWeight: "bold",
                 borderColor: "white",
+                padding: "10px 20px",
+                fontSize: "18px",
+
+                border: "2px solid white",
+                transition: "color 0.2s ease-in-out",
+                cursor: "pointer",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.color = "#00308F"; // Change button text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#00308F"; // Change icon color only if it exists
+              }}
+              onMouseOut={(e) => {
+                e.target.style.color = "#18C5EF"; // Reset text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#18C5EF"; // Reset icon color only if it exists
               }}
             >
               <i
@@ -179,6 +227,22 @@ const Home = () => {
                 color: "#18C5EF",
                 fontWeight: "bold",
                 borderColor: "white",
+                padding: "10px 20px",
+                fontSize: "18px",
+
+                border: "2px solid white",
+                transition: "color 0.2s ease-in-out",
+                cursor: "pointer",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.color = "#00308F"; // Change button text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#00308F"; // Change icon color only if it exists
+              }}
+              onMouseOut={(e) => {
+                e.target.style.color = "#18C5EF"; // Reset text color
+                const icon = e.target.querySelector("i");
+                if (icon) icon.style.color = "#18C5EF"; // Reset icon color only if it exists
               }}
             >
               <i
