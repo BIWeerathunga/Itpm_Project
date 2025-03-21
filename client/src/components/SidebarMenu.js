@@ -20,8 +20,26 @@ function SidebarMenu() {
         >
           {/* Toggle Button */}
           <button
-            className="btn text-white mb-3"
+            className="btn text-white mb-1 mt-1"
             onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <img
+              src="/images/navlogo.png"
+              alt="Logo"
+              className="img-fluid"
+              style={{
+                width: isExpanded ? "200px" : "160px", // Smaller when collapsed, larger when expanded
+                height: isExpanded ? "200px" : "100px",
+                transition: "all 0.3s ease-in-out", // Smooth animation
+                marginTop: "-20px",
+              }}
+            />
+          </button>
+
+          <button
+            className="btn text-white mb-1"
+            onClick={() => setIsExpanded(!isExpanded)}
+            style={{ marginTop: "-30px" }}
           >
             <i
               className={`bi ${
