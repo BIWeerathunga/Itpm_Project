@@ -26,7 +26,7 @@ cd travelmate_web_app
 # Install backend dependencies
 cd server  
 npm install  
-npm install axios cors dotenv express nodemon  
+npm install axios cors dotenv express nodemon mongoose 
 
 # Navigate back to project root
 cd ..  
