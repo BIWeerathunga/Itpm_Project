@@ -1,12 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const router = require("./routes/destinationRoute");
 
 const app = express();
 
 // Middleware - Use app.get() for the root route
-app.get("/", (req, res) => {
-  res.send("It is Working");
-});
+app.use(express.json());
+app.use("/api/destinations", router);
 
 // ✅ Corrected: mongoose.connect (Removed the extra 'n')
 mongoose
