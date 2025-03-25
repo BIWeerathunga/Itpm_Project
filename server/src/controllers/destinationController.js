@@ -18,8 +18,14 @@ const getAllDestinations = async (req, res) => {
 
 // Add a new destination
 const addDestinations = async (req, res) => {
-  const { destinationName, district, province, category, keyHighlights } =
-    req.body;
+  const {
+    destinationName,
+    district,
+    province,
+    category,
+    description,
+    keyHighlights,
+  } = req.body;
 
   try {
     const newDestination = new Destination({
@@ -27,6 +33,7 @@ const addDestinations = async (req, res) => {
       district,
       province,
       category,
+      description,
       keyHighlights,
     });
     await newDestination.save();
@@ -61,8 +68,14 @@ const getById = async (req, res) => {
 // Update a destination
 const updateDestinations = async (req, res) => {
   const id = req.params.id;
-  const { destinationName, district, province, category, keyHighlights } =
-    req.body;
+  const {
+    destinationName,
+    district,
+    province,
+    category,
+    description,
+    keyHighlights,
+  } = req.body;
 
   try {
     const updatedDestination = await Destination.findByIdAndUpdate(
@@ -73,12 +86,10 @@ const updateDestinations = async (req, res) => {
     if (!updatedDestination) {
       return res.status(404).json({ message: "Unable to update destination" });
     }
-    return res
-      .status(200)
-      .json({
-        message: "Destination updated successfully",
-        updatedDestination,
-      });
+    return res.status(200).json({
+      message: "Destination updated successfully",
+      updatedDestination,
+    });
   } catch (err) {
     console.error("Error updating destination:", err);
     return res

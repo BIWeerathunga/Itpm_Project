@@ -18,6 +18,10 @@ const destinationSchema = new Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   keyHighlights: {
     type: [String], // ✅ Changed to an array of strings
     required: true,

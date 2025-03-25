@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function Create() {
+const AddDestination = () => {
+  const [destination, setDestination] = useState({
+    destinationName: "",
+    district: "",
+    province: "",
+    category: "",
+    description: "",
+    keyHighlights: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setDestination({ ...destination, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/api/destinations", {
+        ...destination,
+        keyHighlights: destination.keyHighlights.split(","),
+      });
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding destination:", error);
+    }
+  };
+
   return (
     <div
       className="d-flex align-items-center justify-content-center vh-200 "
@@ -8,35 +38,63 @@ function Create() {
     >
       <form
         className="p-4 border rounded shadow bg-light"
-        style={{ marginLeft: "-1250px", width: "900px" }}
+        style={{ marginLeft: "40px", width: "900px" }}
+        onSubmit={handleSubmit}
       >
         <h3>Add Destinations</h3>
         <div className="row">
           <div className="form-group col-md-6">
             <label htmlFor="destination-name">Destination Name</label>
-            <input type="text" className="form-control" id="destination-name" />
+            <input
+              type="text"
+              className="form-control"
+              name="destinationName"
+              id="destination-name"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="form-group col-md-6">
             <label htmlFor="district">District</label>
-            <input type="text" className="form-control" id="district" />
+            <input
+              type="text"
+              className="form-control"
+              name="district"
+              id="district"
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="form-group col-md-6 mt-3">
             <label htmlFor="province">Province</label>
-            <input type="text" className="form-control" id="province" />
+            <input
+              type="text"
+              className="form-control"
+              name="province"
+              id="province"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="form-group col-md-6 mt-3">
             <label htmlFor="category">Category Select</label>
-            <select className="form-control" id="category">
+            <select
+              className="form-control"
+              name="category"
+              id="category"
+              onChange={handleChange}
+              required
+            >
               <option value="" disabled selected>
                 -- Select Category --
               </option>
-              <option value="1">Adventure Travel</option>
-              <option value="2">Cultural Travel</option>
-              <option value="3">Luxury Travel</option>
-              <option value="4">Religious Travel</option>
+              <option>Adventure Travel</option>
+              <option>Cultural Travel</option>
+              <option>Luxury Travel</option>
+              <option>Religious Travel</option>
             </select>
           </div>
         </div>
@@ -46,7 +104,10 @@ function Create() {
           <textarea
             className="form-control"
             id="description"
+            name="description"
             rows="3"
+            onChange={handleChange}
+            required
           ></textarea>
         </div>
 
@@ -58,6 +119,8 @@ function Create() {
                 type="text"
                 className="form-control"
                 id={`highlight${index + 1}`}
+                onChange={handleChange}
+                required
               />
             </div>
           ))}
@@ -65,7 +128,7 @@ function Create() {
 
         <h6 className="mt-3">Main Image</h6>
         <div className="form-group">
-          <input type="file" className="form-control-file" id="mainImage" />
+          <input type="file" className="image/*" id="mainImage" />
         </div>
 
         <h6 className="mt-3">Sub Images</h6>
@@ -87,6 +150,6 @@ function Create() {
       </form>
     </div>
   );
-}
+};
 
-export default Create;
+export default AddDestination;
