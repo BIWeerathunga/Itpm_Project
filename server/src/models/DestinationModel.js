@@ -1,31 +1,15 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const destinationSchema = new Schema({
-  destinationName: {
-    type: String,
-    required: true,
-  },
-  district: {
-    type: String,
-    required: true,
-  },
-  province: {
-    type: String,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  keyHighlights: {
-    type: [String], // ✅ Changed to an array of strings
-    required: true,
-  },
+const destinationSchema = new mongoose.Schema({
+  destinationName: { type: String, required: true },
+  district: { type: String, required: true },
+  province: { type: String, required: true },
+  category: { type: String, required: true },
+  description: { type: String, required: true },
+  keyHighlights: { type: [String], default: [] }, // Ensure array type
+  mainImage: { type: String },
+  subImages: { type: [String], default: [] },
 });
 
-module.exports = mongoose.model("Destination", destinationSchema); // ✅ Fixed model name
+const Destination = mongoose.model("Destination", destinationSchema);
+module.exports = Destination;

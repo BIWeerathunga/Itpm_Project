@@ -1,14 +1,32 @@
 const express = require("express");
 const router = express.Router();
-//Insert Model
-const Destination = require("../models/DestinationModel");
-//Insert Controller
-const DestinationController = require("../controllers/destinationController");
+const {
+  upload,
+  getAllDestinations,
+  addDestinations,
+  getById,
+  updateDestinations,
+  deleteDestinations,
+} = require("../controllers/destinationController");
 
-router.get("/", DestinationController.getAllDestinations);
-router.post("/", DestinationController.addDestinations);
-router.get("/:id", DestinationController.getById);
-router.put("/:id", DestinationController.updateDestinations);
-router.delete("/:id", DestinationController.deleteDestinations);
-//export
+router.get("/", getAllDestinations);
+router.post(
+  "/",
+  upload.fields([
+    { name: "mainImage", maxCount: 1 },
+    { name: "subImages", maxCount: 10 },
+  ]),
+  addDestinations
+);
+router.get("/:id", getById);
+router.put(
+  "/:id",
+  upload.fields([
+    { name: "mainImage", maxCount: 1 },
+    { name: "subImages", maxCount: 10 },
+  ]),
+  updateDestinations
+);
+router.delete("/:id", deleteDestinations);
+
 module.exports = router;
