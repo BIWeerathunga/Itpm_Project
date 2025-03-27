@@ -17,21 +17,21 @@ Authentication: JWT & bcrypt
 APIs: Google Maps API, OpenWeather API
 
 🚀 Installation & Setup
-# Clone the repository
+## Clone the repository
 git clone https://github.com/BIWeerathunga/travelmate_web_app.git
 
-# Navigate to root project
+## Navigate to root project
 cd travelmate_web_app  
 
-# Install backend dependencies
+## Install backend dependencies
 cd server  
 npm install  
 npm install axios cors dotenv express nodemon mongoose 
 
-# Navigate back to project root
+## Navigate back to project root
 cd ..  
 
-# Install frontend dependencies
+## Install frontend dependencies
 cd client  
 npm install  
 npm install react-router-dom  
