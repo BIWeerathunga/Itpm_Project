@@ -1,17 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router = require("./routes/destinationRoute");
+const cors = require("cors");
+const destinationRoutes = require("./routes/destinationRoute");
+const Router = require("./routes/adminLoginRoute");
 
 const app = express();
-
-// Middleware - Use app.get() for the root route
 app.use(express.json());
-app.use("/api/destinations", router);
+app.use(cors());
+app.use("/uploads", express.static("uploads"));
+app.use("/api/destinations", destinationRoutes);
+app.use("/api/admin", Router);
 
-// ✅ Corrected: mongoose.connect (Removed the extra 'n')
 mongoose
   .connect(
-    "mongodb+srv://it22251428:IT2025xyz@travelproject.0wtx1.mongodb.net/",
+    "mongodb+srv://it22251428:IT2025xyz@travelproject.0wtx1.mongodb.net/YOUR_DB_NAME",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -19,8 +21,6 @@ mongoose
   )
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(5000, () => {
-      console.log("Server is running on port 5000");
-    });
+    app.listen(5000, () => console.log("Server running on port 5000"));
   })
   .catch((err) => console.error("MongoDB Connection Error:", err));
