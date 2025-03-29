@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 const MyNavbar = () => {
@@ -57,9 +58,7 @@ const MyNavbar = () => {
 
         {/* Right-side navigation links */}
         <Nav className="d-flex gap-5">
-          <Nav.Link href="#" className="text-white fs-5">
-            Tours
-          </Nav.Link>
+        <Link to="/tours" className="text-white fs-5 nav-link">Tours</Link>
 
           <Nav.Link
             href="#"
