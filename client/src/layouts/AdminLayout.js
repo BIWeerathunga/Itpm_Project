@@ -5,6 +5,7 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import DestinationList from "../pages/Admin/Destination/DestinationList";
 import AddDestination from "../pages/Admin/Destination/AddDestination";
 import EditDestination from "../pages/Admin/Destination/EditDestination";
+import FeedbackIndex from '../pages/Admin/Feedback/Index';
 import Login from "../pages/Admin/Auth/Login";
 import Navbar from "../components/AdminNav";
 
@@ -26,6 +27,8 @@ function AdminLayout() {
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="destination/list" element={<DestinationList />} />
               <Route path="destination/create" element={<AddDestination />} />
+              <Route path="feedback" element={<FeedbackIndex />} />
+              
               <Route
                 path="destination/edit/:id"
                 element={<EditDestination />}

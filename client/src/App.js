@@ -5,6 +5,11 @@ import AdminLayout from "./layouts/AdminLayout"; // Wraps Admin pages
 import ProtectedRoute from "./layouts/ProtectedRoute"; // Import ProtectedRoute
 import Login from "./pages/Admin/Auth/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FeedbackPage from './pages/FeedbackPage';
+import FeedbackIndex from "./pages/Admin/Feedback/Index";
 
 function App() {
   return (
@@ -12,6 +17,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
 
         {/* Admin Login Route (No Protection) */}
         <Route path="/admin/login" element={<Login />} />
@@ -19,6 +25,7 @@ function App() {
         {/* Protected Admin Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/admin/*" element={<AdminLayout />} />
+          <Route path="/admin-feedback" element={<FeedbackIndex/>}/>
         </Route>
       </Routes>
     </Router>

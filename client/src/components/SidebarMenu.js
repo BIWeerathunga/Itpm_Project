@@ -96,10 +96,8 @@ function SidebarMenu() {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink
-            className="nav-link text-white d-flex align-items-center"
-            to="/admin/feedbacks"
-          >
+        <NavLink to="/admin/feedback" className="nav-link text-white d-flex align-items-center">
+
             <i className="bi bi-chat-text fs-5"></i>
             {isExpanded && <span className="ms-2">Feedbacks</span>}
           </NavLink>

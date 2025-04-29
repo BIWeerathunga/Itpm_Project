@@ -1,6 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavbar from "../components/Navbar";
+import { Link } from 'react-router-dom';
+import FeedbackForm from '../components/FeedbackForm';
+import { useNavigate } from 'react-router-dom';
+import { FaPaperPlane } from 'react-icons/fa';
+import { Button } from 'react-bootstrap';  
+
+
 
 const Home = () => {
   // Internal CSS styles
@@ -220,7 +227,7 @@ const Home = () => {
                 alignSelf: "center", // Adjust this value to move it further down
               }}
             ></div>
-            <button
+            <Link to="/feedback"
               className="btn btn-primary btn-lg"
               style={{
                 backgroundColor: "white",
@@ -251,7 +258,7 @@ const Home = () => {
               ></i>{" "}
               <br />
               Give Feedback
-            </button>
+            </Link>
           </div>
 
           {/* Popular Destinations Section */}
