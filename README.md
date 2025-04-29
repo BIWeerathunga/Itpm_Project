@@ -37,7 +37,7 @@ npm install
 npm install react-router-dom  
 
 # Start the development servers
-cd client && npm start /
+cd client && npm start / 
 cd server && npm start  
 
 
