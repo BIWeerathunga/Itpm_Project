@@ -1,4 +1,4 @@
-# Itpm_Project
+# ITPM_Project
 ## 🌍 Travel Guide Web Application - Travel Mate
 
 A full-stack MERN (MongoDB, Express.js, React.js, Node.js) web application designed to help users explore destinations, find travel recommendations, and plan trips efficiently.
