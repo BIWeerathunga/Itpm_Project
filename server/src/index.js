@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
-const bookingRoutes = require("./routes/bookingRoute");
+const bookingRoutes = require("./routes/bookingRoutes");
 const tourRoutes = require("./routes/tourRoute");
 
 // Load environment variables
@@ -56,6 +56,23 @@ mongoose
         });
         await sampleTour.save();
         console.log("Sample tour created successfully");
+      }
+
+      // Fix tours with missing or invalid mainImage (including non-existent files)
+      const uploadsPath = path.join(__dirname, '../uploads');
+      const imageFiles = fs.readdirSync(uploadsPath).filter(f => /\.(jpg|jpeg|png)$/i.test(f));
+      if (imageFiles.length > 0) {
+        const tours = await Tour.find();
+        for (const tour of tours) {
+          if (!tour.mainImage || !imageFiles.includes(tour.mainImage)) {
+            // Assign a random image from uploads
+            tour.mainImage = imageFiles[Math.floor(Math.random() * imageFiles.length)];
+            await tour.save();
+            console.log(`Updated tour ${tour.title} with image ${tour.mainImage}`);
+          }
+        }
+      } else {
+        console.log('No images found in uploads folder to assign to tours.');
       }
 
       // Dynamic port allocation function
