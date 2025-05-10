@@ -1,26 +1,21 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const router = require("./routes/destinationRoute");
+import express from 'express';
 
-const app = express();
+const router = express.Router();
 
-// Middleware - Use app.get() for the root route
-app.use(express.json());
-app.use("/api/destinations", router);
+// Test route to check server functionality
+router.get('/ping', (req, res) => {
+  res.status(200).json({ message: 'Server is up and running!' });
+});
 
-// ✅ Corrected: mongoose.connect (Removed the extra 'n')
-mongoose
-  .connect(
-    "mongodb+srv://it22251428:IT2025xyz@travelproject.0wtx1.mongodb.net/",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    console.log("Connected to MongoDB");
-    app.listen(5000, () => {
-      console.log("Server is running on port 5000");
-    });
-  })
-  .catch((err) => console.error("MongoDB Connection Error:", err));
+// Test route to check database connection
+router.get('/db-check', async (req, res) => {
+  try {
+    // Example database query
+    const result = await SomeModel.find(); // Replace SomeModel with an actual model
+    res.status(200).json({ message: 'Database connection successful!', data: result });
+  } catch (error) {
+    res.status(500).json({ message: 'Database connection failed!', error: error.message });
+  }
+});
+
+export default router;
