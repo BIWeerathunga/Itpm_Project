@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Trash2, Edit, Star, PlusCircle, UserCircle, MessageSquare, ChevronRight, ChevronLeft, Search } from 'lucide-react';
+import { Trash2, Edit, Star, PlusCircle, UserCircle, MessageSquare, ChevronRight, ChevronLeft, Search, Home } from 'lucide-react';
 import TestimonialCard from '../components/TestimonialCard';
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FeedbackPage = () => {
+  const navigate = useNavigate();
   const [feedbacks, setFeedbacks] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [editingFeedback, setEditingFeedback] = useState(null);
@@ -33,6 +36,9 @@ const FeedbackPage = () => {
     'https://randomuser.me/api/portraits/women/67.jpg',
     'https://randomuser.me/api/portraits/men/76.jpg',
   ];
+
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [feedbackToDelete, setFeedbackToDelete] = useState(null);
 
   useEffect(() => {
     const fetchFeedbacks = async () => {
@@ -106,21 +112,27 @@ const FeedbackPage = () => {
     setIsFormVisible(true);
   };
 
-  const handleDeleteFeedback = async (id) => {
-    // setFeedbacks(feedbacks.filter(feedback => feedback.id !== id));
+  const handleDeleteClick = (id) => {
+    setFeedbackToDelete(id);
+    setShowDeleteConfirm(true);
+  };
+
+  const handleDeleteConfirm = async () => {
     try {
-      // First delete from API
-      const response = await fetch(`http://localhost:5000/api/feedbacks/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/feedbacks/${feedbackToDelete}`, {
         method: "DELETE"
       });
       
       if (!response.ok) throw new Error("Failed to delete");
       
-      // Then update state
-      setFeedbacks(feedbacks.filter(feedback => feedback._id !== id));
+      setFeedbacks(feedbacks.filter(feedback => feedback._id !== feedbackToDelete));
+      toast.success('Feedback deleted successfully!');
     } catch (error) {
       console.error("Error deleting feedback:", error);
+      toast.error('Failed to delete feedback. Please try again.');
     }
+    setShowDeleteConfirm(false);
+    setFeedbackToDelete(null);
   };
 
   const validateForm = () => {
@@ -145,11 +157,11 @@ const FeedbackPage = () => {
       if (editingFeedback) {
         // Update existing feedback
         const updatedFeedback = {
-          ...editingFeedback, // Keep existing properties
+          ...editingFeedback,
           name,
           email,
           location,
-          rating: parseInt(rating, 10), // Ensure rating is a number
+          rating: parseInt(rating, 10),
           feedback: testimonial,
           destination: tripDestination,
           date: tripDate,
@@ -168,10 +180,8 @@ const FeedbackPage = () => {
         }
   
         const savedFeedback = await response.json();
-  
-        // Update state with the edited feedback
         setFeedbacks(feedbacks.map(fb => (fb._id === editingFeedback._id ? savedFeedback : fb)));
-        window.location.reload(); // Reload the page to reflect changes
+        toast.success('Feedback updated successfully!');
       } else {
         // Create new feedback
         const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
@@ -179,7 +189,7 @@ const FeedbackPage = () => {
           name,
           email,
           location,
-          rating: parseInt(rating, 10), // Ensure rating is a number
+          rating: parseInt(rating, 10),
           feedback: testimonial,
           destination: tripDestination,
           date: tripDate,
@@ -199,15 +209,14 @@ const FeedbackPage = () => {
         }
   
         const savedFeedback = await response.json();
-  
-        // Add new feedback to the state
         setFeedbacks([savedFeedback, ...feedbacks]);
+        toast.success('Feedback submitted successfully!');
       }
     } catch (error) {
       console.error("Error handling feedback:", error);
+      toast.error('Failed to submit feedback. Please try again.');
     }
   
-    // Close the form after submission
     handleCloseForm();
   };
   
@@ -244,7 +253,55 @@ const FeedbackPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <h3 className="text-lg font-semibold mb-4">Confirm Delete</h3>
+            <p className="text-gray-600 mb-6">Are you sure you want to delete this feedback? This action cannot be undone.</p>
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={() => {
+                  setShowDeleteConfirm(false);
+                  setFeedbackToDelete(null);
+                }}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteConfirm}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="travel-container">
+        <div className="flex justify-between items-center mb-8">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            <Home className="h-5 w-5" />
+            Back to Home
+          </button>
+        </div>
         <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
           <div className="p-6 bg-travel-primary">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -481,13 +538,13 @@ const FeedbackPage = () => {
                   <div className="absolute top-2 right-2 opacity-1 Z-[999] transition-opacity duration-300 flex space-x-1">
                     <button
                       onClick={() => handleEditFeedback(feedback)}
-                      className="p-1 bg-white rounded-full shadow-md text-blue-600  hover:text-blue-800"
+                      className="p-1 bg-white rounded-full shadow-md text-blue-600 hover:text-blue-800"
                       aria-label="Edit feedback"
                     >
                       <Edit className="h-4 w-4" />
                     </button>
                     <button
-                      onClick={() => handleDeleteFeedback(feedback._id)}
+                      onClick={() => handleDeleteClick(feedback._id)}
                       className="p-1 bg-white rounded-full shadow-md text-red-600 hover:text-red-800"
                       aria-label="Delete feedback"
                     >

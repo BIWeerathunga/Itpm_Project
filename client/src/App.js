@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FeedbackPage from './pages/FeedbackPage';
 import FeedbackIndex from "./pages/Admin/Feedback/Index";
+import ChatbotPage from './pages/ChatbotPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/feedback" element={<FeedbackPage />} />
+        <Route path="/chatbot" element={<ChatbotPage />} />
 
         {/* Admin Login Route (No Protection) */}
         <Route path="/admin/login" element={<Login />} />
@@ -28,6 +30,7 @@ function App() {
           <Route path="/admin-feedback" element={<FeedbackIndex/>}/>
         </Route>
       </Routes>
+      <ToastContainer />
     </Router>
   );
 }

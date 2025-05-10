@@ -4,12 +4,13 @@ import MyNavbar from "../components/Navbar";
 import { Link } from 'react-router-dom';
 import FeedbackForm from '../components/FeedbackForm';
 import { useNavigate } from 'react-router-dom';
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaPaperPlane, FaRobot } from 'react-icons/fa';
 import { Button } from 'react-bootstrap';  
 
 
 
 const Home = () => {
+  const navigate = useNavigate();
   // Internal CSS styles
   const styles = {
     videoContainer: {
@@ -146,6 +147,7 @@ const Home = () => {
             ></div>
 
             <button
+              onClick={() => navigate('/chatbot')}
               className="btn btn-primary btn-lg"
               style={{
                 backgroundColor: "white",
@@ -328,6 +330,28 @@ const Home = () => {
           }}
         >
           <h2>What Our Clients Say</h2>
+        </div>
+
+        {/* Add this button in the hero section */}
+        <div className="mt-8">
+          <button
+            onClick={() => navigate('/chatbot')}
+            className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            <FaRobot className="h-5 w-5" />
+            Ask AI Travel Assistant
+          </button>
+        </div>
+
+        {/* Add this button in the features section */}
+        <div className="mt-8">
+          <button
+            onClick={() => navigate('/chatbot')}
+            className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+          >
+            <FaRobot className="h-5 w-5" />
+            Get AI Travel Recommendations
+          </button>
         </div>
       </div>
     </>
