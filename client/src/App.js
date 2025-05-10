@@ -1,21 +1,29 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import AdminLayout from "./layouts/AdminLayout"; // Wraps Admin pages with Sidebar
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react';
+import "./App.css";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Login from './Pages/Auth/Login';
+import Register from './Pages/Auth/Register';
+// App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './Pages/Home/Home';
+import SetAvatar from './Pages/Avatar/setAvatar';
 
-function App() {
+
+
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        {/* User Routes (Without Sidebar) */}
-        <Route path="/" element={<Home />} />
-
-        {/* Admin Routes (With Sidebar) */}
-        <Route path="/admin/*" element={<AdminLayout />} />
-      </Routes>
-    </Router>
-  );
+    
+      <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/setAvatar" element={<SetAvatar />} />
+        </Routes>
+      </BrowserRouter>
+      </div>
+  )
 }
 
-export default App;
+export default App
